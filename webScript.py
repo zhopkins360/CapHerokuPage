@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import solchecker
-import os
+import sys
 
 app = Flask(__name__)
 
@@ -23,5 +23,6 @@ def result():
     return render_template("page.html", isSol = isSol)
 
 if __name__ == '__main__':
-    port =  int(os.environ.get('PORT', 33507))
+
+    port = int(sys.argv[1])
     app.run(debug=True,port=port)

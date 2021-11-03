@@ -1,1 +1,1 @@
-web: python webScript.py
+web: python webScript.py $PORT
