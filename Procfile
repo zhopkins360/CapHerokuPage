@@ -1,1 +1,1 @@
-web: python webScript.py $PORT
+web: guicorn webScript:app
