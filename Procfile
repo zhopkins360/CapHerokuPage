@@ -1,1 +1,1 @@
-web: guicorn webScript:app
+web: uvicorn webScript:app --host=0.0.0.0 --port=$PORT
