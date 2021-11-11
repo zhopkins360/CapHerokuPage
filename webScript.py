@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import flask
 import solchecker
 import os
 
@@ -24,8 +25,8 @@ def result():
     
         isSol = solchecker.solChecker(vertArr, faceMatrix)
 
-    except ValueError:
-        return render_template("page.html")
+    except (ValueError, KeyError):
+        return flask.redirect("/home")
     
     
     return render_template("page.html", isSol = isSol)
