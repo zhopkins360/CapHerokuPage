@@ -14,15 +14,22 @@ def home():
 def result():
     output = request.form.to_dict()
     
-    vertArr = [int(i) for i in output["vertArr"].split(',')]
+    try:
+        vertArr = [int(i) for i in output["vertArr"].split(',')]
+        #faceMatrix = solchecker.faceMatrixMaker(output["faceMatrix"])
+        if output["whichFaceMatrix"] == "600cell":
+            faceMatrix = solchecker.get600CellFromGithub()
+        else:
+            faceMatrix = solchecker.get120CellFromGithub()
     
-    #faceMatrix = solchecker.faceMatrixMaker(output["faceMatrix"])
-    faceMatrix = solchecker.getMatrixFromGithub()
+        isSol = solchecker.solChecker(vertArr, faceMatrix)
+
+    except ValueError:
+        return render_template("page.html")
     
-    isSol = solchecker.solChecker(vertArr, faceMatrix)
     
     return render_template("page.html", isSol = isSol)
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT',33507))
+    #port = int(os.environ.get('PORT',33507))
     app.run(debug=True)
