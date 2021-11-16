@@ -27,6 +27,9 @@ def get120CellFromGithub():
     shapeMatrix = read_csv(url, header = None)
     return shapeMatrix.to_numpy()
 
+def parseCSV(filePath):
+    shapeMatrix = read_csv(filePath,header=None)
+    return shapeMatrix.to_numpy()
 
 """ if __name__ == '__main__':
     """

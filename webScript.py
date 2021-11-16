@@ -24,27 +24,37 @@ def result():
             faceMatrix = solchecker.get120CellFromGithub()
     
         isSol = solchecker.solChecker(vertArr, faceMatrix)
-        print(os.getcwd())
+
     except (ValueError, KeyError):
         return redirect("/home")
     
     
     return render_template("page.html", isSol = isSol)
 
-#app.config["IMAGE_UPLOADS"] 
-
 @app.route("/uploadmatrix", methods=["GET","POST"])
 def uploadmatrix():
-
     if request.method == "POST":
-
         if request.files:
 
-            txtFile = request.files["faceMatrix"]
-            print(txtFile)
-            return redirect(request.url)
+            try:
+                output = request.form.to_dict()
+                vertArr = [int(i) for i in output["vertArr"].split(',')]
 
-    return render_template("uploadmatrix.html")
+                txtFile = request.files["faceMatrix"]
+                filePath = os.path.join("uploads",txtFile.filename)
+                txtFile.save(filePath)
+                faceMatrix = solchecker.parseCSV(filePath)
+
+                os.remove(filePath)
+
+            except:
+                os.remove(filePath)
+                return render_template("uploadmatrix.html", message="Incorrect User Inputs") 
+
+            isSol = solchecker.solChecker(vertArr,faceMatrix)
+            return render_template("uploadmatrix.html", message="Upload Succesful",isSol=isSol)
+            
+    return render_template("uploadmatrix.html",message="Upload")
 
 if __name__ == '__main__':
     #port = int(os.environ.get('PORT',33507))
