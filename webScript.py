@@ -1,4 +1,3 @@
-import re
 from flask import Flask, render_template, request, redirect
 import solchecker
 import os
@@ -44,7 +43,9 @@ def uploadmatrix():
             
             try:
                 txtFile = request.files["faceMatrix"]
-                filePath = os.path.join("uploads",txtFile.filename)
+                #FOR LOCAL HOSTING
+                #filePath = os.path.join("app/uploads",txtFile.filename)
+                filePath = os.path.join("app/uploads",txtFile.filename)
                 txtFile.save(filePath)
                 faceMatrix = solchecker.parseCSV(filePath)
 
