@@ -39,7 +39,7 @@ def uploadmatrix():
                 output = request.form.to_dict()
                 vertArr = [int(i) for i in output["vertArr"].split(',')]
             except:
-                return render_template("uploadmatrix.htlm",message="Incorrect Vertices Input")
+                return render_template("uploadmatrix.html",message="Incorrect Vertices Input")
             
             try:
                 txtFile = request.files["faceMatrix"]
