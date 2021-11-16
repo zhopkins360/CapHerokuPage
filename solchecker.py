@@ -20,16 +20,13 @@ from pandas import read_csv
 def get600CellFromGithub():
     url = "https://raw.githubusercontent.com/rkrawczyk9/BUPlatonicSolids/develop/sixhundredcell_3_corrected.csv"
     shapeMatrix = read_csv(url, header = None)
-    print(shapeMatrix)
     return shapeMatrix.to_numpy()
 
 def get120CellFromGithub():
     url = "https://raw.githubusercontent.com/rkrawczyk9/BUPlatonicSolids/develop/120cell_facets.csv"
     shapeMatrix = read_csv(url, header = None)
-    print(shapeMatrix)
     return shapeMatrix.to_numpy()
 
 
 """ if __name__ == '__main__':
-
     """
