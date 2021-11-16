@@ -44,8 +44,8 @@ def uploadmatrix():
             try:
                 txtFile = request.files["faceMatrix"]
                 #FOR LOCAL HOSTING
-                #filePath = os.path.join("app/uploads",txtFile.filename)
-                filePath = os.path.join("/app/uploads",txtFile.filename)
+                #filePath = os.path.join("uploads",txtFile.filename)
+                filePath = os.path.join("/app",txtFile.filename)
                 txtFile.save(filePath)
                 faceMatrix = solchecker.parseCSV(filePath)
 
