@@ -5,11 +5,12 @@
 
     <form action="/uploadmatrix" method="POST" enctype="multipart/form-data">
 
-        <label for = "faceMatrix" >Select Face Matrix</label><br>
+        <label for = "vertArr">Enter the list of Vertices separated by commas:</label><br>
         <input type = "text" name = "vertArr" id = "vertArr" required><br>
+        <p>Upload Face Matrix as CSV</p>
         <input type="file" class="custom-file-input" name="faceMatrix" id="faceMatrix" required><br>
 
-        <input type = "submit" class = "file_submit">
+        <br><input type = "submit" class = "file_submit">
     </form>
     <p>{{message}}</p>
     {% if isSol %}

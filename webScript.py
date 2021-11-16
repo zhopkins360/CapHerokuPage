@@ -39,7 +39,10 @@ def uploadmatrix():
             try:
                 output = request.form.to_dict()
                 vertArr = [int(i) for i in output["vertArr"].split(',')]
-
+            except:
+                return render_template("uploadmatrix.htlm",message="Incorrect Vertices Input")
+            
+            try:
                 txtFile = request.files["faceMatrix"]
                 filePath = os.path.join("uploads",txtFile.filename)
                 txtFile.save(filePath)
@@ -49,11 +52,11 @@ def uploadmatrix():
 
             except:
                 os.remove(filePath)
-                return render_template("uploadmatrix.html", message="Incorrect User Inputs") 
+                return render_template("uploadmatrix.html", message="Incorrect File Input") 
 
             isSol = solchecker.solChecker(vertArr,faceMatrix)
             return render_template("uploadmatrix.html", message="Upload Succesful",isSol=isSol)
-            
+
     return render_template("uploadmatrix.html",message="Upload")
 
 if __name__ == '__main__':
