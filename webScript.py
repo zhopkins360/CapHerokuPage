@@ -24,7 +24,7 @@ def result():
             faceMatrix = solchecker.get120CellFromGithub()
     
         isSol = solchecker.solChecker(vertArr, faceMatrix)
-        print(os.getcwd)
+        print(os.getcwd())
     except (ValueError, KeyError):
         return redirect("/home")
     
